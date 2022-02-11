@@ -1,10 +1,8 @@
-const FeedbackItem = () => {
+const FeedbackItem = (props) => {
   return (
     <div className="card">
-      <div className="num-display">10</div>
-      <div className="text-display">
-        Here is a sample feedback for your application!
-      </div>
+      <div className="num-display">{props.rating}</div>
+      <div className="text-display">{props.text}</div>
     </div>
   );
 };
