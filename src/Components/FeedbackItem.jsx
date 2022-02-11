@@ -1,9 +1,16 @@
-const FeedbackItem = (props) => {
+import { FaTimes } from "react-icons/fa";
+import Card from "./Shared/Card";
+
+const FeedbackItem = ({ item, deleteFeedback }) => {
+  // const handleClick = () => console.log(item.id);
   return (
-    <div className="card">
-      <div className="num-display">{props.rating}</div>
-      <div className="text-display">{props.text}</div>
-    </div>
+    <Card reverse={false}>
+      <div className="num-display">{item.rating}</div>
+      <button onClick={deleteFeedback} className="close">
+        <FaTimes color="purple" />
+      </button>
+      <div className="text-display">{item.text}</div>
+    </Card>
   );
 };
 
