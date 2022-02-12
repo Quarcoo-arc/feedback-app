@@ -1,10 +1,13 @@
 import Card from "./Shared/Card";
 import Button from "./Shared/Button";
 import SelectRating from "./SelectRating";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import FeedbackContext from "../Context/FeedbackContext";
 
-const FeedbackForm = ({ addFeedback }) => {
+const FeedbackForm = () => {
   const [text, setText] = useState("");
+
+  const { addFeedback } = useContext(FeedbackContext);
 
   const [disabled, setDisabled] = useState(true);
 
@@ -17,7 +20,6 @@ const FeedbackForm = ({ addFeedback }) => {
     addFeedback({ text, rating });
 
     //return to default
-    setRating(10);
     setText("");
   };
 
