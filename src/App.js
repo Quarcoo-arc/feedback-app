@@ -4,8 +4,9 @@ import FeedbackData from "./Data/FeedbackData";
 import FeedbackStats from "./Components/FeedbackStats";
 import FeedbackForm from "./Components/FeedbackForm";
 import AboutPage from "./Components/Pages/AboutPage";
+import AboutLinkIcon from "./Components/AboutLinkIcon";
+import { FeedbackProvider } from "./Context/FeedbackContext";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const App = () => {
@@ -18,39 +19,37 @@ const App = () => {
   };
 
   return (
-    <Router>
-      <Header />
-      <div className="container">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <FeedbackForm
-                  addFeedback={(newFeedback) =>
-                    setFeedback([
-                      { ...newFeedback, id: feedback.length + 1 },
-                      ...feedback,
-                    ])
-                  }
-                />
-                <FeedbackStats feedback={feedback} />
-                <FeedbackList
-                  feedback={feedback}
-                  handleDelete={removeFeedback}
-                />
-                <div className="about-link">
-                  <a href="/about">
-                    <Link to="/about">?</Link>
-                  </a>
-                </div>
-              </>
-            }
-          />
-          <Route path="/about" element={<AboutPage />} />
-        </Routes>
-      </div>
-    </Router>
+    <FeedbackProvider>
+      <Router>
+        <Header />
+        <div className="container">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <FeedbackForm
+                    addFeedback={(newFeedback) =>
+                      setFeedback([
+                        { ...newFeedback, id: feedback.length + 1 },
+                        ...feedback,
+                      ])
+                    }
+                  />
+                  <FeedbackStats feedback={feedback} />
+                  <FeedbackList
+                    feedback={feedback}
+                    handleDelete={removeFeedback}
+                  />
+                  <AboutLinkIcon />
+                </>
+              }
+            />
+            <Route path="/about" element={<AboutPage />} />
+          </Routes>
+        </div>
+      </Router>
+    </FeedbackProvider>
   );
 };
 
