@@ -18,7 +18,14 @@ const App = () => {
     <>
       <Header />
       <div className="container">
-        <FeedbackForm />
+        <FeedbackForm
+          addFeedback={(newFeedback) =>
+            setFeedback([
+              { ...newFeedback, id: feedback.length + 1 },
+              ...feedback,
+            ])
+          }
+        />
         <FeedbackStats feedback={feedback} />
         <FeedbackList feedback={feedback} handleDelete={removeFeedback} />
       </div>

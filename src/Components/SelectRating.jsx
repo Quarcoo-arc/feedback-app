@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-const SelectRating = () => {
+const SelectRating = ({ rating }) => {
   const [selected, setSelected] = useState(10);
 
   const handleChange = (event) => {
     setSelected(+event.target.value);
+    rating(+event.target.value);
   };
 
   return (
