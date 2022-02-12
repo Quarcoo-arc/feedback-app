@@ -3,6 +3,7 @@ import FeedbackList from "./Components/FeedbackList";
 import FeedbackData from "./Data/FeedbackData";
 import FeedbackStats from "./Components/FeedbackStats";
 import FeedbackForm from "./Components/FeedbackForm";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const App = () => {
@@ -28,6 +29,11 @@ const App = () => {
         />
         <FeedbackStats feedback={feedback} />
         <FeedbackList feedback={feedback} handleDelete={removeFeedback} />
+      </div>
+      <div className="about-link">
+        <a href="/about">
+          <Link to="/about">?</Link>
+        </a>
       </div>
     </>
   );
