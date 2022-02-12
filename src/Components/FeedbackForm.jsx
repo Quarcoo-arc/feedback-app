@@ -1,11 +1,25 @@
 import Card from "./Shared/Card";
 import Button from "./Shared/Button";
+import SelectRating from "./SelectRating";
 import { useState } from "react";
 
 const FeedbackForm = () => {
   const [text, setText] = useState("");
 
+  const [disabled, setDisabled] = useState(true);
+
+  const [message, setMessage] = useState("");
+
   const handleChange = (event) => {
+    if (text === "") {
+      setDisabled(true);
+    } else if (text !== "" && text.trim().length <= 10) {
+      setMessage("Text must be at least 10 characters");
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+      setMessage("");
+    }
     setText(event.target.value);
   };
 
@@ -13,7 +27,7 @@ const FeedbackForm = () => {
     <Card>
       <form>
         <h2>How would you rate our service?</h2>
-        {/* ToDo - Ratings Select Component */}
+        <SelectRating />
         <div className="input-group">
           <input
             type="text"
@@ -21,8 +35,12 @@ const FeedbackForm = () => {
             onChange={handleChange}
             value={text}
           />
-          <Button type="submit">Send</Button>
+
+          <Button type="submit" isDisabled={disabled}>
+            Send
+          </Button>
         </div>
+        {disabled && <div className="message">{message}</div>}
       </form>
     </Card>
   );
