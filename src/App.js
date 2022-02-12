@@ -3,6 +3,8 @@ import FeedbackList from "./Components/FeedbackList";
 import FeedbackData from "./Data/FeedbackData";
 import FeedbackStats from "./Components/FeedbackStats";
 import FeedbackForm from "./Components/FeedbackForm";
+import AboutPage from "./Components/Pages/AboutPage";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
@@ -16,26 +18,39 @@ const App = () => {
   };
 
   return (
-    <>
+    <Router>
       <Header />
       <div className="container">
-        <FeedbackForm
-          addFeedback={(newFeedback) =>
-            setFeedback([
-              { ...newFeedback, id: feedback.length + 1 },
-              ...feedback,
-            ])
-          }
-        />
-        <FeedbackStats feedback={feedback} />
-        <FeedbackList feedback={feedback} handleDelete={removeFeedback} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <FeedbackForm
+                  addFeedback={(newFeedback) =>
+                    setFeedback([
+                      { ...newFeedback, id: feedback.length + 1 },
+                      ...feedback,
+                    ])
+                  }
+                />
+                <FeedbackStats feedback={feedback} />
+                <FeedbackList
+                  feedback={feedback}
+                  handleDelete={removeFeedback}
+                />
+                <div className="about-link">
+                  <a href="/about">
+                    <Link to="/about">?</Link>
+                  </a>
+                </div>
+              </>
+            }
+          />
+          <Route path="/about" element={<AboutPage />} />
+        </Routes>
       </div>
-      <div className="about-link">
-        <a href="/about">
-          <Link to="/about">?</Link>
-        </a>
-      </div>
-    </>
+    </Router>
   );
 };
 
