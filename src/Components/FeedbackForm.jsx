@@ -7,7 +7,8 @@ import FeedbackContext from "../Context/FeedbackContext";
 const FeedbackForm = () => {
   const [text, setText] = useState("");
 
-  const { addFeedback, feedbackEdit } = useContext(FeedbackContext);
+  const { addFeedback, feedbackEdit, updateFeedback } =
+    useContext(FeedbackContext);
 
   const [disabled, setDisabled] = useState(true);
 
@@ -26,7 +27,17 @@ const FeedbackForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    addFeedback({ text, rating });
+
+    if (text.trim().length < 10) {
+      setMessage("Text must be at least 10 characters");
+      return;
+    }
+
+    if (feedbackEdit.edit) {
+      updateFeedback(feedbackEdit.item.id, { text, rating });
+    } else {
+      addFeedback({ text, rating });
+    }
 
     //return to default
     setText("");
