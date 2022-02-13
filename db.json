@@ -6,14 +6,19 @@
       "text": "High quality products!"
     },
     {
-      "id": 2,
-      "rating": 5,
-      "text": "Poor customer service!"
+      "text": "I love you guys very much!!",
+      "rating": 8,
+      "id": 3
     },
     {
-      "id": 3,
+      "text": "Your services could use a bit more improvement!",
+      "rating": 6,
+      "id": 4
+    },
+    {
+      "text": "Great work guys!",
       "rating": 8,
-      "text": "I love you guys!!"
+      "id": 5
     }
   ]
 }
