@@ -1,0 +1,19 @@
+{
+  "feedback": [
+    {
+      "id": 1,
+      "rating": 9,
+      "text": "High quality products!"
+    },
+    {
+      "id": 2,
+      "rating": 5,
+      "text": "Poor customer service!"
+    },
+    {
+      "id": 3,
+      "rating": 8,
+      "text": "I love you guys!!"
+    }
+  ]
+}
