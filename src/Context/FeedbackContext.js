@@ -6,7 +6,10 @@ const FeedbackContext = createContext();
 export const FeedbackProvider = ({ children }) => {
   const [feedback, setFeedback] = useState(FeedbackData);
 
-  const [rating, setRating] = useState(10);
+  const [feedbackEdit, setFeedbackEdit] = useState({
+    item: {},
+    edit: false,
+  });
 
   const deleteFeedback = (id) => {
     if (window.confirm("Are you sure you want to delete this item?")) {
@@ -17,8 +20,18 @@ export const FeedbackProvider = ({ children }) => {
   const addFeedback = (newFeedback) =>
     setFeedback([{ ...newFeedback, id: feedback.length + 1 }, ...feedback]);
 
+  const editFeedback = (item) => setFeedbackEdit({ item, edit: true });
+
   return (
-    <FeedbackContext.Provider value={{ feedback, deleteFeedback, addFeedback }}>
+    <FeedbackContext.Provider
+      value={{
+        feedback,
+        deleteFeedback,
+        addFeedback,
+        editFeedback,
+        feedbackEdit,
+      }}
+    >
       {children}
     </FeedbackContext.Provider>
   );
